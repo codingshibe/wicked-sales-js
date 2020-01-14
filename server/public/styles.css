@@ -1,0 +1,22 @@
+
+img {
+  object-fit: contain;
+  height: 200px;
+}
+
+.topBar {
+  color: white;
+}
+
+h5, p {
+  font-size: .75rem;
+}
+
+.card {
+  height: 400px;
+  margin-bottom: 15px;
+}
+
+.container {
+  background-color: rgb(240, 238, 238);
+}
