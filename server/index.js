@@ -29,6 +29,29 @@ app.get('/api/products', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.get('/api/products/:productId', (req, res, next) => {
+  const productId = parseInt(req.params.productId);
+  if (isNaN(productId) || productId < 0) {
+    res.status(400).json({ error: 'productId must be a positive integer' });
+    return;
+  }
+  const sql = `
+              select *
+              from "products"
+              where "productId" = $1
+              `;
+  const value = [productId];
+  db.query(sql, value)
+    .then(result => {
+      if (result.rows.length !== 0) {
+        res.status(200).json(result.rows[0]);
+      } else {
+        next();
+      }
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
