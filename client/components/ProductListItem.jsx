@@ -4,7 +4,7 @@ class ProductListItem extends React.Component {
 
   render() {
     return (
-      <div className="col-4">
+      <div className="col-12 col-sm-6 col-md-4 col-lg-4">
         <div className="card">
           <img src={this.props.image} className="card-img-top" alt={this.props.productName}/>
           <div className="card-body">
