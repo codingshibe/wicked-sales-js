@@ -32,8 +32,7 @@ app.get('/api/products', (req, res, next) => {
 app.get('/api/products/:productId', (req, res, next) => {
   const productId = parseInt(req.params.productId);
   if (isNaN(productId) || productId < 0) {
-    res.status(400).json({ error: 'productId must be a positive integer' });
-    return;
+    next(new ClientError('productId must be a positive integer', 400));
   }
   const sql = `
               select *
