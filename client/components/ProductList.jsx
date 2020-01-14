@@ -5,8 +5,6 @@ class ProductList extends React.Component {
   constructor(props) {
     super(props);
     this.state = { products: [] };
-    this.getProducts = this.getProducts.bind(this);
-    this.displayProducts = this.displayProducts.bind(this);
   }
 
   componentDidMount() {
@@ -28,8 +26,7 @@ class ProductList extends React.Component {
   }
 
   displayProducts() {
-    const productList = [...this.state.products];
-    const products = productList.map((item, index) => {
+    const products = this.state.products.map((item, index) => {
       return <ProductListItem key={index} image={item.image} productName={item.name} price={item.price} description={item.shortDescription} />;
     });
     return products;
