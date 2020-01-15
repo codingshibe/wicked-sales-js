@@ -53,7 +53,7 @@ app.get('/api/products/:productId', (req, res, next) => {
 
 app.get('/api/cart', (req, res, next) => {
   if (!req.session.cartId) {
-    res.status(200).json({});
+    res.status(200).json([]);
   }
   const sql = `
               select "c"."cartItemId",
@@ -86,7 +86,7 @@ app.post('/api/cart', (req, res, next) => {
   db.query(sql, values)
     .then(result => {
       if (result.rows.length === 0) {
-        next(new ClientError(`Cannot find product with productId of ${productId}`, 404));
+        throw (new ClientError(`Cannot find product with productId of ${productId}`, 404));
       }
       if (req.session.cartId) {
         return { price: result.rows[0].price, cartId: req.session.cartId };
