@@ -26,8 +26,8 @@ class ProductList extends React.Component {
   }
 
   displayProducts() {
-    const products = this.state.products.map((item, index) => {
-      return <ProductListItem key={index} image={item.image} productName={item.name} price={item.price} description={item.shortDescription} />;
+    const products = this.state.products.map(item => {
+      return <ProductListItem key={item.productId} image={item.image} productName={item.name} price={item.price} description={item.shortDescription} setView={this.props.setView} productId={item.productId} longDescription={this.props.longDescription}/>;
     });
     return products;
   }
