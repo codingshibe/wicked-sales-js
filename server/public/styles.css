@@ -24,3 +24,8 @@ img {
 .detailsImage {
   height: 320px;
 }
+
+.shoppingCart {
+  margin-right: 63px;
+  font-size: 1rem
+}
