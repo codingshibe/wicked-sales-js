@@ -131,6 +131,27 @@ app.post('/api/cart', (req, res, next) => {
     .catch(err => next(err));
 });
 
+app.post('/api/orders', (req, res, next) => {
+  if (!req.session.cartId) {
+    next(new ClientError('missing shopping cart', 400));
+  }
+  if (!req.body.name || !req.body.creditCard || !req.body.shippingAddress) {
+    next(new ClientError('Fields cannot be empty', 400));
+  }
+  const sql = `
+              insert into "orders" ("name", "creditCard", "shippingAddress", "cartId")
+              values ($1, $2, $3, $4)
+              returning *
+              `;
+  const values = [req.body.name, req.body.creditCard, req.body.shippingAddress, req.session.cartId];
+  db.query(sql, values)
+    .then(result => {
+      delete req.session.cartId;
+      res.status(201).json(result.rows[0]);
+    })
+    .catch(err => next(err));
+});
+
 app.use('/api', (req, res, next) => {
   next(new ClientError(`cannot ${req.method} ${req.originalUrl}`, 404));
 });
