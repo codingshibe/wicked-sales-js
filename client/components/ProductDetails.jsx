@@ -30,10 +30,10 @@ class ProductDetails extends React.Component {
           </div>
         </div>
         <div className="row">
-          <div className="col-12 col-sm-12 col-md-6">
+          <div className="col-12 col-sm-12 col-md-5">
             <img className="detailsImage" src={this.state.product.image} alt={this.state.product.name}/>
           </div>
-          <div className="col-12 col-sm-12 col-md-6">
+          <div className="col-12 col-sm-12 col-md-5">
             <h3>{this.state.product.name}</h3>
             <p>{`$ ${price}`}</p>
             <p>{this.state.product.shortDescription}</p>

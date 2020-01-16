@@ -22,10 +22,16 @@ img {
 }
 
 .detailsImage {
-  height: 320px;
+  max-height: 320px;
+  max-width: 245px;
 }
 
 .shoppingCart {
   margin-right: 63px;
   font-size: 1rem
+}
+
+.cartSummaryItem {
+  background-color: white;
+  border: solid 1px rgb(230, 220, 220);
 }
