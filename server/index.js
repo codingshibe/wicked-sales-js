@@ -133,10 +133,10 @@ app.post('/api/cart', (req, res, next) => {
 
 app.post('/api/orders', (req, res, next) => {
   if (!req.session.cartId) {
-    next(new ClientError('missing shopping cart', 400));
+    throw (new ClientError('missing shopping cart', 400));
   }
   if (!req.body.name || !req.body.creditCard || !req.body.shippingAddress) {
-    next(new ClientError('Fields cannot be empty', 400));
+    throw (new ClientError('Fields cannot be empty', 400));
   }
   const sql = `
               insert into "orders" ("name", "creditCard", "shippingAddress", "cartId")
